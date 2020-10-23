@@ -8,6 +8,10 @@ public class ParameterMapping {
     private String name;
     private Class<?> type;
 
+    public ParameterMapping(String content) {
+        this.name = content;
+    }
+
     public String getName() {
         return name;
     }

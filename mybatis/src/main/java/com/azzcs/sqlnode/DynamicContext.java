@@ -8,7 +8,7 @@ import java.util.Map;
  * @Date: 2020/10/22 3:25 下午
  */
 public class DynamicContext {
-    private StringBuffer sb;
+    private StringBuffer sb = new StringBuffer();
 
     private Map<Object,Object> bindings = new HashMap<>();
 

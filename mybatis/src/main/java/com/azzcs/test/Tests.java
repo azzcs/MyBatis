@@ -1,8 +1,11 @@
 package com.azzcs.test;
 
 import com.azzcs.config.Configuration;
-import com.azzcs.config.XmlConfigBuilder;
 import com.azzcs.io.Resources;
+import com.azzcs.sqlsession.DefaultSqlSessionFactory;
+import com.azzcs.sqlsession.SqlSession;
+import com.azzcs.sqlsession.SqlSessionFactory;
+import com.azzcs.sqlsession.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
 
@@ -12,13 +15,14 @@ import java.io.InputStream;
  */
 public class Tests {
     public static void main(String[] args) throws Exception {
-        String location = "mybatis-config.xml";
-
         Configuration config;
-        try (InputStream inputStream = Resources.getResourceAsStream(location)) {
-            XmlConfigBuilder xmlConfigBuilder = new XmlConfigBuilder();
-            config = xmlConfigBuilder.parse(inputStream);
+        try (InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml")) {
+            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            SqlSession sqlSession = sessionFactory.openSqlSession();
+            User param = new User();
+            param.setId(1);
+            User user = sqlSession.selectOne("com.azzcs.test.UserDao.findUserById", param);
+            System.out.println(user);
         }
-        System.out.println(config);
     }
 }

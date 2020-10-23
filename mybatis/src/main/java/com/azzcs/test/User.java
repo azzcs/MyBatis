@@ -9,7 +9,7 @@ public class User {
     private String name;
     private String email;
     private Integer age;
-    private Integer sex;
+    private Boolean sex;
     private String schoolName;
 
     public Integer getId() {
@@ -44,11 +44,11 @@ public class User {
         this.age = age;
     }
 
-    public Integer getSex() {
+    public Boolean getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(Boolean sex) {
         this.sex = sex;
     }
 
@@ -58,5 +58,17 @@ public class User {
 
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", schoolName='" + schoolName + '\'' +
+                '}';
     }
 }
